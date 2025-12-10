@@ -7,28 +7,34 @@ import (
 func FindZeroesFromRotations(rotations []string, dial int) int {
 	zeroCount := 0
 	for _, rotation := range rotations {
+		startDial := dial
+
 		direction := rotation[0]
-		dial = RotateDial(rotation, direction, dial)
+		clicks, _ := strconv.Atoi(rotation[1:])
+
+		// Add logic to count full 100 rotations
+		zeroCount += clicks / 100
+
+		switch direction {
+		case 'L':
+			dial = RotateLeft(startDial, clicks)
+			if startDial != 0 && dial > startDial {
+				zeroCount++
+			}
+		case 'R':
+			dial = RotateRight(startDial, clicks)
+			if dial != 0 && dial < startDial {
+				zeroCount++
+			}
+		default:
+			panic("Invalid direction")
+		}
 
 		if dial == 0 {
 			zeroCount++
 		}
 	}
 	return zeroCount
-}
-
-func RotateDial(rotation string, direction byte, dial int) int {
-	rotationTotal, err := strconv.Atoi(rotation[1:])
-
-	switch direction {
-	case 'L':
-		dial = RotateLeft(dial, rotationTotal)
-	case 'R':
-		dial = RotateRight(dial, rotationTotal)
-	default:
-		panic(err)
-	}
-	return dial
 }
 
 func RotateLeft(dial int, rotation int) int {

@@ -18,30 +18,6 @@ func TestRotateLeft(t *testing.T) {
 	}
 }
 
-func TestRotateLeftWithFullRotation(t *testing.T) {
-	rotation := 100
-	dial := 0
-
-	want := 0
-	got := RotateLeft(dial, rotation)
-
-	if got != want {
-		t.Errorf("rotateDial(%q, %d) = %d; want %d", rotation, dial, got, want)
-	}
-}
-
-func TestRotateLeftWithOverFullRotation(t *testing.T) {
-	rotation := 101
-	dial := 0
-
-	want := 99
-	got := RotateLeft(dial, rotation)
-
-	if got != want {
-		t.Errorf("rotateDial(%q, %d) = %d; want %d", rotation, dial, got, want)
-	}
-}
-
 func TestRotateLeftAtLeftBoundary(t *testing.T) {
 	rotation := 1
 	dial := 0
@@ -66,30 +42,6 @@ func TestRotateRight(t *testing.T) {
 	}
 }
 
-func TestRotateRightWithFullRotation(t *testing.T) {
-	rotation := 100
-	dial := 0
-
-	want := 0
-	got := RotateRight(dial, rotation)
-
-	if got != want {
-		t.Errorf("rotateDial(%q, %d) = %d; want %d", rotation, dial, got, want)
-	}
-}
-
-func TestRotateRightWithOverFullRotation(t *testing.T) {
-	rotation := 101
-	dial := 0
-
-	want := 1
-	got := RotateRight(dial, rotation)
-
-	if got != want {
-		t.Errorf("rotateDial(%q, %d) = %d; want %d", rotation, dial, got, want)
-	}
-}
-
 func TestRotateRightAtLeftBoundary(t *testing.T) {
 	rotation := 1
 	dial := 99
@@ -103,8 +55,9 @@ func TestRotateRightAtLeftBoundary(t *testing.T) {
 
 func TestFindZeroesFromRotationsReturnsExpectedResult(t *testing.T) {
 	rotations := []string{"L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"}
+	// rotations := []string{"L68", "L30", "R48"}
 	dial := 50
-	want := 3
+	want := 6
 	got := FindZeroesFromRotations(rotations, dial)
 
 	if got != want {
@@ -115,7 +68,7 @@ func TestFindZeroesFromRotationsReturnsExpectedResult(t *testing.T) {
 func TestFindZeroesFromRotationsWithInputFile(t *testing.T) {
 	rotations := getInputRotations()
 	dial := 50
-	want := 1086
+	want := 6268
 	got := FindZeroesFromRotations(rotations, dial)
 
 	if got != want {

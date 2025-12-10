@@ -1,27 +1,60 @@
-package main
+package day2
 
 import (
-	"aoc/day1"
-	"fmt"
-	"log"
+	"strconv"
+	"strings"
 )
 
-func main() {
-	// Set properties of the predefined Logger, including
-	// the log entry prefix and a flag to disable printing
-	// the time, source file, and line number.
-	log.SetPrefix("greetings: ")
-	log.SetFlags(0)
+type IdRange struct {
+	Start int
+	End   int
+}
 
-	// A slice of names.
-	names := []string{"Gladys", "Samantha", "Darrin"}
+func GetInvalidIdTotalFromRanges(idRanges []string) int {
+	total := 0
 
-	// Request greeting messages for the names.
-	messages, err := day1.Hellos(names)
-	if err != nil {
-		log.Fatal(err)
+	for _, idRange := range idRanges {
+		total += GetInvalidIdTotal(idRange)
 	}
-	// If no error was returned, print the returned map of
-	// messages to the console.
-	fmt.Println(messages)
+
+	return total
+}
+
+func GetInvalidIdTotal(idRange string) int {
+	total := 0
+	invalidIdArr := GetInvalidIdsInRange(idRange)
+
+	for _, idValue := range invalidIdArr {
+		total += idValue
+	}
+
+	return total
+
+}
+
+func IsInvalidId(id int) bool {
+	idStr := strconv.Itoa(id)
+	mid := len(idStr) / 2
+
+	return idStr[:mid] == idStr[mid:]
+}
+
+func GetInvalidIdsInRange(idRangeStr string) []int {
+	result := []int{}
+	idRange := GetIdRange(idRangeStr)
+	for i := idRange.Start; i <= idRange.End; i++ {
+		if IsInvalidId(i) {
+			result = append(result, i)
+		}
+	}
+	return result
+}
+
+func GetIdRange(idRange string) IdRange {
+	idRangeParts := strings.SplitN(idRange, "-", 2)
+
+	idRangePartsStart, _ := strconv.Atoi(idRangeParts[0])
+	idPartsRangeEnd, _ := strconv.Atoi(idRangeParts[1])
+
+	return IdRange{Start: idRangePartsStart, End: idPartsRangeEnd}
 }

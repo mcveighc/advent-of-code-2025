@@ -68,7 +68,7 @@ func TestGetTotalOutputJoltageReturnsExpectedTotal(t *testing.T) {
 
 func TestGetTotalOutputJoltageFromInputReturnsExpectedTotal(t *testing.T) {
 	banks := getInputBanks()
-	expected := 357
+	expected := 17144
 
 	actual := GetTotalOutputJoltage(banks)
 

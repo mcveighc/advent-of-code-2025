@@ -32,22 +32,6 @@ func GetInvalidIdTotal(idRange string) int {
 
 }
 
-func IsInvalidId(id int) bool {
-	idStr := strconv.Itoa(id)
-	mid := len(idStr) / 2
-	for i := 1; i < mid+1; i++ {
-		seqVal := idStr[0:i]
-
-		seqInstancesLen := len(strings.Split(idStr, seqVal)) - 1
-
-		if seqInstancesLen*i == len(idStr) {
-			return true
-		}
-	}
-	return false
-
-}
-
 func GetInvalidIdsInRange(idRangeStr string) []int {
 	result := []int{}
 	idRange := GetIdRange(idRangeStr)
@@ -66,4 +50,19 @@ func GetIdRange(idRange string) IdRange {
 	idPartsRangeEnd, _ := strconv.Atoi(idRangeParts[1])
 
 	return IdRange{Start: idRangePartsStart, End: idPartsRangeEnd}
+}
+
+func IsInvalidId(id int) bool {
+	idStr := strconv.Itoa(id)
+	mid := len(idStr) / 2
+	for i := 1; i < mid+1; i++ {
+		seqVal := idStr[0:i]
+		seqInstancesLen := len(strings.Split(idStr, seqVal)) - 1
+
+		if seqInstancesLen*i == len(idStr) {
+			return true
+		}
+	}
+	return false
+
 }

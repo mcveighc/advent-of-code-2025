@@ -8,47 +8,57 @@ import (
 	"testing"
 )
 
-func TestIsInvalidIdWithSeqOfTwiceReturnsTrue(t *testing.T) {
+func TestIsInvalidIdWithInvalidSeqOfTwoReturnsTrue(t *testing.T) {
+	// Assemble
 	id := 11
-	want := true
+	expected := true
 
-	got := IsInvalidId(id)
+	// Act
+	actual := IsInvalidId(id)
 
-	if got != want {
-		t.Errorf("IsInvalidId(%d) = %t; want %t", id, got, want)
+	// Assert
+	if actual != expected {
+		t.Errorf("IsInvalidId(%d) = %t; expected %t", id, actual, expected)
 	}
 }
 
-func TestIsInvalidIdWithSeqOfThreeReturnsTrue(t *testing.T) {
+func TestIsInvalidIdWithInvalidSeqOfThreeReturnsTrue(t *testing.T) {
+	// Assemble
 	id := 123123123
-	want := true
+	expected := true
 
-	got := IsInvalidId(id)
+	// Act
+	actual := IsInvalidId(id)
 
-	if got != want {
-		t.Errorf("IsInvalidId(%d) = %t; want %t", id, got, want)
+	// Assert
+	if actual != expected {
+		t.Errorf("IsInvalidId(%d) = %t; expected %t", id, actual, expected)
 	}
 }
 
-func TestIsInvalidIdWithSeqOfFiveReturnsTrue(t *testing.T) {
+func TestIsInvalidIdWithInvalidSeqOfFiveReturnsTrue(t *testing.T) {
+	// Assemble
 	id := 2121212121
-	want := true
+	expected := true
 
-	got := IsInvalidId(id)
+	// Act
+	actual := IsInvalidId(id)
 
-	if got != want {
-		t.Errorf("IsInvalidId(%d) = %t; want %t", id, got, want)
+	// Assert
+	if actual != expected {
+		t.Errorf("IsInvalidId(%d) = %t; expected %t", id, actual, expected)
 	}
 }
 
-func TestIsInvalidIdWithSeqOfSevenReturnsTrue(t *testing.T) {
+func TestIsInvalidIdWithInvalidSeqOfSevenReturnsTrue(t *testing.T) {
+	// Assemble
 	id := 21212121212121
-	want := true
+	expected := true
 
-	got := IsInvalidId(id)
+	actual := IsInvalidId(id)
 
-	if got != want {
-		t.Errorf("IsInvalidId(%d) = %t; want %t", id, got, want)
+	if actual != expected {
+		t.Errorf("IsInvalidId(%d) = %t; expected %t", id, actual, expected)
 	}
 }
 
@@ -62,7 +72,7 @@ func TestIsInvalidIdReturnsFalseForInvalidId(t *testing.T) {
 
 	// Assert
 	if actual != expected {
-		t.Errorf("IsInvalidId(%d) = %t; want %t", id, actual, expected)
+		t.Errorf("IsInvalidId(%d) = %t; expected %t", id, actual, expected)
 	}
 }
 
@@ -76,7 +86,7 @@ func TestGetInvalidIdsInRangeReturnsExpectedResult(t *testing.T) {
 
 	// Assert
 	if !reflect.DeepEqual(expected, actual) {
-		t.Errorf("Expected %v, got %v", expected, actual)
+		t.Errorf("Expected %v, actual %v", expected, actual)
 	}
 }
 
@@ -87,7 +97,7 @@ func TestGetIdRangeReturnsExpectedResult(t *testing.T) {
 	actual := GetIdRange(idRange)
 
 	if !reflect.DeepEqual(expected, actual) {
-		t.Errorf("Expected %v, got %v", expected, actual)
+		t.Errorf("Expected %v, actual %v", expected, actual)
 	}
 }
 
@@ -98,7 +108,7 @@ func TestGetInvalidIdTotalReturnsExpectedResult(t *testing.T) {
 	actual := GetInvalidIdTotal(idRange)
 
 	if actual != expected {
-		t.Errorf("Expected %d, got %d", expected, actual)
+		t.Errorf("Expected %d, actual %d", expected, actual)
 	}
 }
 
@@ -111,18 +121,18 @@ func TestGetInvalidIdTotalFromRangesReturnsExpectedResult(t *testing.T) {
 	actual := GetInvalidIdTotalFromRanges(ranges)
 
 	if actual != expected {
-		t.Errorf("Expected %d, got %d", expected, actual)
+		t.Errorf("Expected %d, actual %d", expected, actual)
 	}
 }
 
 func TestGetInvalidIdtotalFromInputReturnsExpectedResult(t *testing.T) {
 	ranges := getInputIdRanges()
-	expected := 31839939622
+	expected := 41662374059
 
 	actual := GetInvalidIdTotalFromRanges(ranges)
 
 	if actual != expected {
-		t.Errorf("Expected %d, got %d", expected, actual)
+		t.Errorf("Expected %d, actual %d", expected, actual)
 	}
 }
 

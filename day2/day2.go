@@ -35,8 +35,17 @@ func GetInvalidIdTotal(idRange string) int {
 func IsInvalidId(id int) bool {
 	idStr := strconv.Itoa(id)
 	mid := len(idStr) / 2
+	for i := 1; i < mid+1; i++ {
+		seqVal := idStr[0:i]
 
-	return idStr[:mid] == idStr[mid:]
+		seqInstancesLen := len(strings.Split(idStr, seqVal)) - 1
+
+		if seqInstancesLen*i == len(idStr) {
+			return true
+		}
+	}
+	return false
+
 }
 
 func GetInvalidIdsInRange(idRangeStr string) []int {
